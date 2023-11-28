@@ -1,10 +1,10 @@
 import React from "react";
-import { Text, View } from "react-native";
+import StartGameScreen from "./screens/StartGameScreen";
 const App = () => {
   return (
-    <View>
-      <Text>Hey</Text>
-    </View>
+    
+      <StartGameScreen/>
+    
   )
 }
 export default App
