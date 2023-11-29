@@ -1,12 +1,10 @@
 import { View,Text,Pressable,StyleSheet } from "react-native"
-function PrimaryButton(props) {
-    function pressHandler() {
-        console.log("Prees")
-    }
+function PrimaryButton({children,onPress}) {
+    
     return (
         <View style={styles.buttonOuterContainer}>
-            <Pressable style={({preesed})=>preesed ? [styles.buttonInnerContainer,styles.preesed] :styles.buttonInnerContainer }  onPress={pressHandler} android_ripple={{color:'#640233'}}>
-                <Text style={styles.buttonText}>{ props.children}</Text>
+            <Pressable  style={({preesed})=>preesed ? [styles.buttonInnerContainer,styles.preesed] :styles.buttonInnerContainer }  onPress={onPress} android_ripple={{color:'#640233'}}>
+                <Text style={styles.buttonText}>{ children}</Text>
                 </Pressable>
             </View>
     )
