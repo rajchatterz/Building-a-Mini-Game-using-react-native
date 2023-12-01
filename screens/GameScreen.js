@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Text, StyleSheet, View } from "react-native"
-import Title from "../component/Title"
+import Title from "../component/ui/Title"
+import NumberContainer from "../component/game/NumberContainer"
+import PrimaryButton from "../component/ui/PrimaryButton"
 function generateRandomBetween(min, max, exclude) {
     const random = Math.floor(Math.random() * (max - min)) + min
     if (random === exclude) {
@@ -18,12 +20,13 @@ function GameScreen({ userNumber }) {
     return (
         <View style={styles.container}>
             <Title>Opponent's Guess</Title>
-            <Text></Text>
+            <NumberContainer>{ currentGuess}</NumberContainer>
             <View>
                 <Text>Higher or Lower</Text>
-                <Text>{ userNumber}</Text>
-                {/* + */}
-                {/* - */}
+                <View>
+                    <PrimaryButton>+</PrimaryButton>
+                    <PrimaryButton>-</PrimaryButton>
+                </View>
             </View>
             {/* <View>Log Rounds</View> */}
         </View>
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
         color: '#ddb52f',
         textAlign: 'center',
         padding: 20,
-        borderWidth: 2,
+        borderWidth: 10,
         borderColor:'#f2dd22'
     }
 })

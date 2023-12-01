@@ -1,5 +1,5 @@
 import { TextInput, View,StyleSheet,Alert } from "react-native"
-import PrimaryButton from "../component/PrimaryButton"
+import PrimaryButton from "../component/ui/PrimaryButton"
 import { useState } from "react"
 function StartGameScreen({onConfirmNumber}) {
     const [enteredNumber, setEnteredNumber] = useState('');
