@@ -1,39 +1,43 @@
-import { View,Text,Pressable,StyleSheet } from "react-native"
-function PrimaryButton({children,onPress}) {
+import { Text, View,Pressable,StyleSheet } from "react-native"
+
+function PrimaryButton({ children,onPress }) {
     
     return (
-        <View style={styles.buttonOuterContainer}>
-            <Pressable  style={({preesed})=>preesed ? [styles.buttonInnerContainer,styles.preesed] :styles.buttonInnerContainer }  onPress={onPress} android_ripple={{color:'#640233'}}>
-                <Text style={styles.buttonText}>{ children}</Text>
+            <View style={styles.buttonOuterContainer}>
+                <Pressable style={({pressed})=> pressed ? [styles.container ,styles.pressed] : styles.container } onPress={onPress} android_ripple={{color:'#4b4a4c'}}>
+                <Text style={styles.buttonText}> {children}</Text>
                 </Pressable>
-            </View>
+            </View> 
     )
 }
 export default PrimaryButton
 const styles = StyleSheet.create({
     buttonOuterContainer: {
-        borderRadius: 29,
+        backgroundColor: '#8661ad',
         margin: 4,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderRadius: 20,
     },
-    buttonInnerContainer: {
-        backgroundColor: '#72063c',
-        // borderRadius: 28,
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        shadowColor: 'black',
-        elevation: 2,
-        width: 100,
+    container: {
+        backgroundColor: '#8661ad',
+        elevation: 100,
+        shadowColor: '#938484',
+        shadowOpacity: 0.95,
+        shadowOffset: { width: 1, height: 2 },
+        width: 110,
         height: 40,
+        alignItems: 'center',
         justifyContent:'center'
     },
     buttonText: {
         color: 'white',
+        fontSize: 18,
+        fontWeight:'bold',
         textAlign: 'center',
-        fontWeight:'900'
-
+        
     },
-    preesed: {
+    pressed: {
         opacity:0.75
     }
+   
 })
