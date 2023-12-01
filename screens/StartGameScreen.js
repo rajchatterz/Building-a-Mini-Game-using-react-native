@@ -15,15 +15,16 @@ function StartGameScreen() {
 
         if (isNaN(chosenNumber) || chosenNumber<=0|| chosenNumber>99)
          {
-            Alert.alert('Invalid Number!','Number has to be a nuber between 1 and 99',[{text:'Okay',style:'destructive',onPress:{resetInputHandler}}])
+            Alert.alert('Invalid Number!', 'Number has to be a nuber between 1 and 99', [{ text: 'Okay', style: 'destructive', onPress:resetInputHandler}])
         }
+        
     }
     return (
         <View style={styles.inputContainer}>
             <TextInput style={styles.numberInput} maxLength={2} value={enteredNumber} onChangeText={numberInputHandler} keyboardType="number-pad" />
             <View style={styles.primaryButton}>
-                <PrimaryButton >Reset</PrimaryButton>
                 <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+                <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
             </View>
         </View>
     )
