@@ -1,4 +1,4 @@
-import { View,Text, Image, StyleSheet } from "react-native"
+import { View,Text, Image, StyleSheet,Dimensions } from "react-native"
 import Title from "../component/ui/Title"
 import PrimaryButton from "../component/ui/PrimaryButton"
 
@@ -18,6 +18,7 @@ function GameOverScreen({roundNumber,userNumber,onstartNewGame}) {
     ) 
  }
 
+ const dimentionImage = Dimensions.get('window').width
 export default GameOverScreen
 
 const styles = StyleSheet.create({
@@ -28,9 +29,9 @@ const styles = StyleSheet.create({
         gap:10
     },
     imageContainer: {
-        width: 300,
-        height: 300,
-        borderRadius: 150,
+        width: dimentionImage<380?150:300,
+        height: dimentionImage<380?150:300,
+        borderRadius: dimentionImage<380?75:150,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',

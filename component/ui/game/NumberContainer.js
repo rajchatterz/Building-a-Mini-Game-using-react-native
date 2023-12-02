@@ -10,7 +10,7 @@ function NumberContainer({children}) {
 
 export default NumberContainer
 
-const deviceWidth = Dimensions.get('window').width;
+const deviceWidth = Dimensions.get('window').width
 const styles = StyleSheet.create({
     container: {
         borderWidth: 3,
