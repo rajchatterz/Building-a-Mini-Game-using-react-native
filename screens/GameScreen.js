@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Text, StyleSheet, View } from "react-native"
+import { useState,useEffect } from "react"
+import { Text, StyleSheet, View,Alert } from "react-native"
 import Title from "../component/ui/Title"
 import NumberContainer from "../component/game/NumberContainer"
 import PrimaryButton from "../component/ui/PrimaryButton"
@@ -13,19 +13,43 @@ function generateRandomBetween(min, max, exclude) {
 
 }
 
-function GameScreen({ userNumber }) {
+let minBoundary = 1
+let maxBoundary = 100
+function GameScreen({ userNumber,onGameOver }) {
     const initialGuess= generateRandomBetween(1,100,userNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
-    
+
+    useEffect(() => {
+        if (currentGuess === userNumber) {
+            onGameOver() 
+        }
+    },[currentGuess,userNumber,onGameOver ])
+    function nextGuessHandler(direction) {
+        if ((direction === 'lower' && currentGuess < userNumber) || (direction === 'greater' && currentGuess > userNumber)) {
+            Alert.alert("Dont lie!,", " You know this is wrong", [{ text: 'Soory', style:'cancel'}])
+            return
+        }
+        if (direction === 'lower') {
+            maxBoundary=currentGuess
+            
+        }
+        
+        else {
+            minBoundary=currentGuess+1
+        }
+        const newRandom = generateRandomBetween(minBoundary, maxBoundary, currentGuess)
+        setCurrentGuess(newRandom)
+    }
     return (
         <View style={styles.container}>
+
             <Title>Opponent's Guess</Title>
             <NumberContainer>{ currentGuess}</NumberContainer>
             <View>
                 <Text>Higher or Lower</Text>
                 <View>
-                    <PrimaryButton>+</PrimaryButton>
-                    <PrimaryButton>-</PrimaryButton>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this,'greater')}>+</PrimaryButton>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this,'lower')}>-</PrimaryButton>
                 </View>
             </View>
             {/* <View>Log Rounds</View> */}
