@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons'
 import Title from "../component/ui/Title"
 import NumberContainer from "../component/game/NumberContainer"
 import PrimaryButton from "../component/ui/PrimaryButton"
+let min = 1
+let max = 100
 function generateRandomBetween(min, max, exclude) {
     const random = Math.floor(Math.random() * (max - min)) + min
     if (random === exclude) {
@@ -14,15 +16,13 @@ function generateRandomBetween(min, max, exclude) {
 
 }
 
-let minBoundary = 1
-let maxBoundary = 100
 function GameScreen({ userNumber,onGameOver }) {
     const initialGuess= generateRandomBetween(1,100,userNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
     const [guessRound,setGuessRound] = useState([initialGuess])
     useEffect(() => {
         if (currentGuess === userNumber) {
-            onGameOver() 
+            onGameOver(guessRound.length) 
         }
     },[currentGuess,userNumber,onGameOver ])
     function nextGuessHandler(direction) {
@@ -31,14 +31,14 @@ function GameScreen({ userNumber,onGameOver }) {
             return
         }
         if (direction === 'lower') {
-            maxBoundary=currentGuess
+            max=currentGuess
             
         }
         
         else {
-            minBoundary=currentGuess+1
+            min=currentGuess+1
         }
-        const newRandom = generateRandomBetween(minBoundary, maxBoundary, currentGuess)
+        const newRandom = generateRandomBetween(min, max, currentGuess)
         setCurrentGuess(newRandom)
         setGuessRound(prevGuessRound =>[newRandom,...prevGuessRound])
     }
@@ -57,7 +57,7 @@ function GameScreen({ userNumber,onGameOver }) {
             <View>
                 {/* {guessRound.map(guessRound =>( <Text key={guessRound}>{guessRound }</Text>))}
                  */}
-                <FlatList data={guessRound} renderItem={(itemData) => <Text>{ itemData.item}</Text>} keyExtractor={(item)=>item}/>
+                <FlatList  data={guessRound} renderItem={(itemData) => <Text style={styles.listItem}>{ itemData.item}</Text>} keyExtractor={(item)=>item}/>
             </View>
         </View>
     )
@@ -65,6 +65,23 @@ function GameScreen({ userNumber,onGameOver }) {
 export default GameScreen
 
 const styles = StyleSheet.create({
+    listItem: {
+        textAlign: 'center',
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 40,
+        padding: 12,
+        marginVertical: 8,
+        backgroundColor: '#ddb52f',
+        flexDirection: 'row',
+        width: '100%',
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3,
+
+    },    
     container: { 
        padding:24
     },
