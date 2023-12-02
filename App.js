@@ -4,10 +4,18 @@ import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import { LinearGradient } from 'expo-linear-gradient';
 import GameOverScreen from "./screens/GameOverScreen";
+import { useFonts } from 'expo-font'
+// import AppLoading from "expo-app-loading";
 const App = () => {
-  const [userNumber, setUserNumber] = useState()
+  const [userNumber, setUserNumber] = useState();
+
   const [gameIsOver, seGameIsOver] = useState(true)
   
+  const [fontloaded] = useFonts({
+    'open-sans':require('./assets/font/OpenSans-Regular.ttf'),
+    'open-sans-bold':require('./assets/font/OpenSans-Bold.ttf')
+  })
+
   
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber)
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
     opacity:0.15
   },
   screenView: {
-    paddingTop:Platform.OS==="android"?25:0
+    paddingTop:Platform.OS==="android"?35:0
   }
 
 })

@@ -49,8 +49,8 @@ function GameScreen({ userNumber,onGameOver }) {
             <View style={styles.btnContainer}>
                 <Text style={{color:'white',fontSize:20}}>Higher or Lower</Text>
                 <View style={styles.buttonContainer}>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this,'greater')}><Ionicons name="md-remove" size={24} color="white"/></PrimaryButton>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this,'lower')}><Ionicons name="md-add" size={24} color="white"/></PrimaryButton>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this,'greater')}><Ionicons name="md-add" size={24} color="white"/></PrimaryButton>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this,'lower')}><Ionicons name="md-remove" size={24} color="white"/></PrimaryButton>
                 </View>
             </View>
             {/* <View>Log Rounds</View> */}
