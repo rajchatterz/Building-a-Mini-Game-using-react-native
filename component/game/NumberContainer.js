@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     numberText: {
-        color:'#fac936'
+        color: '#fac936',
+        fontSize:26
     }
 })
